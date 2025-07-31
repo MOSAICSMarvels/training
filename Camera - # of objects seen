@@ -1,0 +1,12 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+ 	int count; //creates a variable to represent the # of objects
+	camera_open(); //opens camera
+	camera_update(); //updates camera until it succeeds
+	count=get_object_count(0);
+	printf("There are %d objects on the screen.\n", count); 
+    camera_close();
+    return 0;
+}
