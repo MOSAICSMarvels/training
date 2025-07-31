@@ -1,0 +1,23 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+   cmpc(0);//clear the motor position counter
+    
+    while (gmpc(0)<=5665)  //drive forward until it hits this # on mpc.  It will go a little further, may have to adjust
+    {
+   		motor (0,50);
+    	motor (3,50);
+    }
+    
+ ao();
+    
+    cmpc (0); //clear counter before returning to start to be more accurate
+    
+    while (gmpc(0)>-5665)  //drive back until the mpc is back to 0.  It will go a bit farther- may have to adjust
+    {
+        motor (0,-50);
+        motor (3,-50);
+    }     
+    return 0;
+}
