@@ -1,0 +1,58 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+  int area = 0;
+    if(camera_open() == 1)  //opens camera and checks for success
+    {
+    printf("Camera open successful.\n");
+        msleep(1000);//waiting for camera to load
+        while (area <= (160 * 120/2))
+        {
+            camera_update();
+            msleep(10);
+     
+        if (get_object_count(0) > 0) // if camera sees an object...
+            
+        {
+           area = get_object_area(0,0);//....then find the area for the channel, object #
+            if (get_object_center_x(0,0) < 300)//if it's less than 300, move to the left.  
+            {       
+         motor(0, 25);
+         motor(3, -25);
+     }  
+     else if  (get_object_center_x(0,0) > 420)  //if it's more than 420, move to the right.
+     {
+          motor(0, -25);
+          motor(3, 25);
+     }
+        
+        else
+      {
+          motor(0, 25);
+          motor(3, 25);
+        }
+    }
+    }
+    }
+        else
+        {
+            while(get_object_count(0) == 0)
+            {
+                motor (0,25);
+                motor (3,25);
+                camera_update();
+                
+            }
+            area =get_object_area(0,0);
+            printf ("There area of the new object is %d.\n", area);       
+            printf("the final are of the object is %d.\n", area);
+            
+        camera_close();
+        }
+
+    {
+        printf("camera open not successful. Ending program.\n");
+}
+return(0);
+}
