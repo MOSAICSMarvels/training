@@ -1,0 +1,31 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+      
+    int count=0;
+    
+    while (count <=3)//do this thing 3 times
+    {     
+        
+        while (gmpc(0)<=4000)  //drive forward until it hits this # on mpc.  It will go a little further, may have to adjust
+    {
+   		motor (0,50);
+        motor(3,50);
+      }   
+       cmpc(0);
+           
+       while (gmpc(0)<=1115)//right turn
+       {
+       motor (0,50);
+    	motor (3,-50);
+		}
+    
+    cmpc(0);
+    
+    ao();
+        count = count+1;//add one to the counter, goes back to the beginning of the loop
+            
+    }
+    return 0;
+}
