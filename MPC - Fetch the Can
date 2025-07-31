@@ -1,0 +1,65 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+    //claw is port 3
+    //arm is port 0
+    //claw closed is 1200
+    //claw open is 500
+    //arm up is 420
+    //arm out is 1200
+    
+    int claw = 3;
+    int arm = 0;
+    int closed = 1200;
+    int open = 500;
+    int up = 420;
+    int out = 1200;
+    
+    
+    cmpc(0);//clear the motor position counter
+    
+    enable_servos();
+    set_servo_position(arm, up);
+    msleep(500);
+    set_servo_position(claw, open);
+    msleep(500);
+  
+    
+    while (gmpc(0)<=4000)  //drive forward until it hits this # on mpc.  It will go a little further, may have to adjust
+    {
+   		motor (0,50);
+    	motor (3,50);
+        ao();
+    }
+    
+    cmpc(0); //clear the mpc
+    
+    set_servo_position(arm, out);
+    msleep(1000);
+    set_servo_position(claw, closed);
+    msleep(1000);
+    
+    ao();
+    
+    set_servo_position(arm, up);
+    msleep(500);
+        
+     while (gmpc(0)<=2230)  //drive forward until it hits this # on mpc.  It will go a little further, may have to adjust
+    {
+   		motor (0,50);
+    	motor (3,-50);
+        ao();
+    }
+    
+    cmpc(0);
+    
+     while (gmpc(0)<=3600)  //drive forward until it hits this # on mpc.  It will go a little further, may have to adjust
+    {
+   		motor (0,50);
+    	motor (3,50);
+        ao();
+    }
+    
+    return 0;
+}
