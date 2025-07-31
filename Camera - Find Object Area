@@ -1,0 +1,41 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+    int area; //creates a variable to represent the # of objects
+	if (camera_open() ==1); //if the camera is open, if it doesn't open, the program ends
+        msleep (3000);//if the camera does open, wait 3 seconds
+        while (a_button () == 0)  //while you have NOT pushed the A button
+        {
+	camera_update(); //updates camera until it succeeds
+            
+	if (get_object_count(0) > 0)  //If there is an object 
+    {
+      area = get_object_area (0,0);
+        if (area <= (640 * 480/2))
+        {
+         motor (0,25);
+         motor (3,25); //start driving towards the object
+        }
+        else
+        {
+            	ao();
+     		    area = get_object_area (0,0);
+            printf("The area of the object is %d.\n", area);
+                   
+            
+        //once the object has filled 50% of the camera view, stop
+        //print the area of the object
+        
+        break; //exits the loop     
+        }
+    }
+        else
+        {
+			printf("No_Objects_Found\n"); 
+        }
+        }
+    camera_close();//close the camera
+    
+    return 0;
+}
