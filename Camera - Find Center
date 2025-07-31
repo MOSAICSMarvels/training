@@ -1,0 +1,32 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+ 	int x; int y;
+    if (camera_open() ==1) //opens the camera and checks for success 
+    {
+       printf("camera opens successful.\n");
+        msleep (3000);  //waiting for camera to load
+       while (camera_update()  == 0) // Updates until it succeeds
+              {                     
+                 	 printf("Camera update not successful.\n");
+              }
+               printf("camera update successful.\n");
+               if(get_object_count(0) > 0)    
+                  {
+                      
+                      x = get_object_center_x(0,0);
+                      y = get_object_center_y(0,0);
+                      printf("The center of the object is (%d, %d).\n", x, y);
+                      
+                  }
+                  camera_close(); //camera closed successfully
+                  
+              }    
+              else
+              {
+                      printf("Camera open not successful.Ending program.\n");
+                  }
+  			  return 0;
+		}
+
