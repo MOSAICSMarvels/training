@@ -6,8 +6,8 @@ int main()
     //arm is port 0
     //claw closed is 1200
     //claw open is 500
-    //arm up is 420
-    //arm out is 1200
+    //arm up is 240
+    //arm out is 960
     
     int claw = 3;
     int arm = 0;
