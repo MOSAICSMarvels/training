@@ -15,7 +15,7 @@ int main()
       }   
        cmpc(0);
            
-       while (gmpc(0)<=1115)//right turn
+       while (gmpc(0)<=1115)//right turn  This in incorrect, motors should be 0 -50 and 3 50.  Also the gmpc should be greater than -1115, but it won't let me make that change in github.
        {
        motor (0,50);
     	motor (3,-50);
